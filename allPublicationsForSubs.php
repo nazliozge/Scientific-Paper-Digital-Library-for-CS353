@@ -97,7 +97,7 @@
         var goToEditSubsInfo = <?php Print($goToEditSubsInfo);?>;
         if(goToEditSubsInfo){
             window.location = 'EditSubsInfo.php';
-            window.alert("dasda1");
+ 
         }
     </script>
 
@@ -105,7 +105,7 @@
         var goToHome = <?php Print($goToHome);?>;
         if(goToHome){
             window.location = 'SubsHome.php';
-            window.alert("dasda1");
+
         }
     </script>
 
@@ -113,7 +113,7 @@
         var goToAllPublications = <?php Print($goToAllPublications);?>;
         if(goToAllPublications){
             window.location = 'allPublicationsForSubs.php';
-            window.alert("dasda1");
+
         }
     </script>
 
@@ -121,7 +121,7 @@
         var goToAllConferences = <?php Print($goToAllConferences);?>;
         if(goToAllConferences){
             window.location = 'allConferences.php';
-            window.alert("dasda1");
+
         }
     </script>
 
@@ -129,7 +129,7 @@
         var goToAllJournals = <?php Print($goToAllJournals);?>;
         if(goToAllJournals){
             window.location = 'allJournals.php';
-            window.alert("dasda1");
+
         }
     </script>
 
