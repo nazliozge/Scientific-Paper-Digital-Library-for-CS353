@@ -41,67 +41,12 @@
         
         <h1 align="left"> 
 
-            <form action="" method="post">  
-                <input type="text" name="term" /> 
-                <input type="submit" value="Search" />  
+            <form>
+                <input type="text" id="pub_name" name="pub_name" />  
+                <input type="submit" name="Search" value="Search">
             </form>
 
         </h1>
-
-        <?php
-            if (!empty($_REQUEST['term'])) {
-             
-
-                $term = mysql_real_escape_string($connection, $_GET['term']);     
-                $sql = "SELECT * FROM publication WHERE topic LIKE '$term' OR type LIKE '$term' "; 
-                $r_query = mysql_query($connection, $sql); 
-                echo "test2";
-
-
-                if($row > 0)
-                {
-                    echo "<table border = 1>";
-                    echo "<thead>";
-                    echo"<tr>";
-                    echo"<th>Name</th>";
-                    echo"<th>Topic</th>";
-                    echo"<th>Type</th>";
-                    echo"</tr>";
-                    echo"</thead>";
-                    echo"<tbody>";
-
-                    while ($display = mysql_fetch_array($r_query)){  
-                        echo "<tr>";
-                        echo "<td>" . $display['name'] . "</td>";
-                        echo "<td>" . $display['topic'] . "</td>";
-                        echo "<td>" . $display['type'] . "</td>";
-                        if($varr == 1)
-                        {
-                            $cid1 =  $display['name'];
-                        }
-                        if($varr == 2)
-                        {
-                            $cid2 =  $display['name'];
-                        }
-                        else
-                        {
-                            $cid3 =  $display['name'];
-                        }
-                        $varr++; 
-                    }
-                    $varr = 1;
-                    echo"</tbody>";
-                    echo"</table>";
-                }
-                else
-                {
-                    echo "<br>";
-                    echo "Nothing found.";
-                }
-
-            }
-        ?>
-
     </body> 
 
     <?php
@@ -167,6 +112,72 @@
             }
 
         }
+    
+        if(isset($_GET['Search']))
+        {
+            if(!empty($_GET["pub_name"]))
+            {
+                $pub_name = mysqli_real_escape_string($connection, $_GET['pub_name']);
+                $query = "SELECT * FROM publication WHERE topic LIKE '%$pub_name%' OR name LIKE '%$pub_name%' ";
+                $result = mysqli_query($connection, $query);
+
+                if(!$result)
+                {
+                    echo("Error description: " . mysqli_error($connection));
+                }
+                
+                $count = mysqli_num_rows($result);
+
+                echo "<br>";
+                echo "Search Result: ";
+                echo "<br>";
+
+                if($count > 0)
+                {
+                    echo "<table border = 1>";
+                    echo "<thead>";
+                    echo"<tr>";
+                    echo"<th>Name</th>";
+                    echo"<th>Topic</th>";
+                    echo"<th>Type</th>";
+                    echo"</tr>";
+                    echo"</thead>";
+                    echo"<tbody>";
+                    while($display = mysqli_fetch_array($result))
+                    {
+                        echo "<tr>";
+                        echo "<td>" . $display['name'] . "</td>";
+                        echo "<td>" . $display['topic'] . "</td>";
+                        echo "<td>" . $display['type'] . "</td>";
+                        if($varr == 1)
+                        {
+                            $cid1 =  $display['name'];
+                        }
+                        if($varr == 2)
+                        {
+                            $cid2 =  $display['name'];
+                        }
+                        else
+                        {
+                            $cid3 =  $display['name'];
+                        }
+                        $varr++;
+
+                }
+                $varr = 1;
+                echo"</tbody>";
+                echo"</table>";
+            }
+            else
+            {
+                echo "<br>";
+                echo "Nothing found.";
+            }
+                
+
+            }
+        }
+
 
 
         if(isset($_GET['buttonHome']))
