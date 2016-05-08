@@ -36,38 +36,72 @@
 
 
                 if ($count == 1) {
-                    echo "<br>";
-                    header( 'Location: home.php' ); // Home page e geçiş, burda kontrol etmemiz gerekiyor. HANGI TUR HOME PAGE?
 
+                    $query = "SELECT * FROM author WHERE userName = '$uName'";
+                    $resultAuthor = mysqli_query($connection, $query);
+                    if(!$resultAuthor)
+                    {
+                        echo("Error description: " . mysqli_error($connection));
+                    }
+                    $countAuthor = mysqli_num_rows($resultAuthor);
+
+
+                    $query = "SELECT * FROM subscriber WHERE userName = '$uName'";
+                    $resultSubsc = mysqli_query($connection, $query);
+                    if(!$resultSubsc)
+                    {
+                        echo("Error description: " . mysqli_error($connection));
+                    }
+                    $countSubsc = mysqli_num_rows($resultSubsc);
+
+
+                    if($countAuthor==1){
+                        $goToAuthHome = true;
+                    }
+                    if($countSubsc==1){
+                        $goToSubscHome = true;
+                    }
+                               
                 }
                 else
                 {
                     echo "<br> <script> alert('Incorrect username or password.') </script>";
                 }
             }
-            else    // Nazlı bunu scriptle(Validate formla) yapmış. Farketmez.
-            {
-                /*
-                
-                if (empty($_GET["username"]) && !empty($_GET["password"]))
-                {
-                    echo "<br> <script> alert('Please fill the username field.') </script>";
+            
 
-                }
-                if (!empty($_GET["username"]) && empty($_GET["password"]))
-                {
-                    echo "<br> <script> alert('Please fill the password field.') </script>";
-                }
-                if(empty($_GET["username"]) && empty($_GET["password"]))
-                {
-                    echo "<br> <script> alert('Please fill all the fields.') </script>";
-                }
-                */
-                
-            }
+        }
+
+        if(isset($_GET['Register']))
+        {
+            echo "string";
+            $goToReg = true;
         }
 
     ?> 
+
+    <script type="text/javascript">
+        var goToAuthHome = <?php Print($goToAuthHome);?>;
+        if(goToAuthHome){
+            window.location = 'AuthHome.php';
+            window.alert("dasda1");
+
+    </script>
+
+    <script type="text/javascript">
+        var goToSubscHome = <?php Print($goToSubscHome);?>;                
+        if(goToSubscHome){
+            window.alert("dasda2");
+            window.location = 'SubsHome.php';
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        var goToReg = <?php Print($goToReg); ?>;
+        if(goToReg){
+            window.location = 'Register.php';
+        }
+    </script>
+        
 </html>
-
-
