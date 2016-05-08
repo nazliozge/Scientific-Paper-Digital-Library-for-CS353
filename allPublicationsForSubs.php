@@ -120,7 +120,7 @@
     <script type="text/javascript">
         var goToAllConferences = <?php Print($goToAllConferences);?>;
         if(goToAllConferences){
-            window.location = 'allConferences.php';
+            window.location = 'allConferencesForSub.php';
 
         }
     </script>
@@ -128,7 +128,7 @@
     <script type="text/javascript">
         var goToAllJournals = <?php Print($goToAllJournals);?>;
         if(goToAllJournals){
-            window.location = 'allJournals.php';
+            window.location = 'allJournalsForSub.php';
 
         }
     </script>
