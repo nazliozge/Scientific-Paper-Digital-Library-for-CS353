@@ -54,6 +54,10 @@
         {
             $goToHome = true;
         }
+        if(isset($_GET['buttonCreate']))
+        {
+            $goToHome = true;
+        }
         if(isset($_GET['buttonPub']))
         {
             $goToAllPublications = true;
