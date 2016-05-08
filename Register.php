@@ -25,7 +25,7 @@
 
 			<!-- membership - list type could be changed; currently not compatible with sql statement!  -->
 			<p> Membership: </p>
-			<select>
+			<select name="membership">
 					<option value="subscriber">Subscriber</option>
 					<option value="student">Student</option>
 					<option value="researcher">Researcher</option>
@@ -67,7 +67,7 @@
         {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
-        
+
         if(isset($_GET['Continue']))
         {
 
@@ -78,7 +78,8 @@
 				$_SESSION["password"] = $_GET["password"];
 				$_SESSION["name"] = $_GET["userName"];
 				$_SESSION["phone"] = $_GET["phone"];
-				$_SESSION["address"] = $_GET["address"];  
+				$_SESSION["address"] = $_GET["address"];
+				$_SESSION["membership"] = $_POST["membership"];
 
 				// GO TO NEXT PAGE
             }
@@ -89,3 +90,4 @@
 
 
 </html>
+
