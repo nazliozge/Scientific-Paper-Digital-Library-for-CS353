@@ -57,8 +57,7 @@
 	<?php
         echo "<br>";
         session_start();
-        $uName = null;
-        $pWord = null;
+
 
         if (mysqli_connect_errno())
         {
