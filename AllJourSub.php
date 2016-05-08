@@ -1,4 +1,5 @@
 <html>
+
 	<head>
 		<title>SciLib</title>
 	</head>
@@ -39,4 +40,33 @@
 			 <p></p>
 	
 	</body>	
+	
+	
+	<?php	
+	
+		if(isset($_GET['Register']))
+		 {
+        	 echo "string";
+            $goToReg = true;
+        }
+
+    ?> 
+
+    <script type="text/javascript">
+        var goToAuthHome = <?php Print($goToAuthHome);?>;
+        if(goToAuthHome){
+            window.location = 'AuthHome.php';
+            window.alert("dasda1");
+
+    </script>
+
+    <script type="text/javascript">
+        var goToSubscHome = <?php Print($goToSubscHome);?>;                
+        if(goToSubscHome){
+            window.alert("dasda2");
+            window.location = 'SubsHome.php';
+        }
+
+    </script>
+
 </html>
