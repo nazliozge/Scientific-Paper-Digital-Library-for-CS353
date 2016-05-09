@@ -1,8 +1,11 @@
 <html>
     <?php
         include 'connection.php';
-        echo "<br>";
-        session_start();    //alınan password ya da username'i diğer sayfalara aktarmak için session. Otomatik olarak gönderiyor sanırım.
+
+        session_start();
+     
+        //alınan password ya da username'i diğer sayfalara aktarmak için session. Otomatik olarak gönderiyor sanırım.
+
         $uName = null;
         $pWord = null;
         if (mysqli_connect_errno())
@@ -13,10 +16,12 @@
         {
             echo "<br>";
             if(!empty($_GET["userName"]) && !empty($_GET["password"]))
-            {
+            {  
+                $_SESSION['uName'] = $_GET['userName']; 
+
                 $uName = mysqli_real_escape_string($connection, $_GET['userName']);
                 $pWord = mysqli_real_escape_string($connection, $_GET['password']);
-                $_SESSION['userName'] = $_GET['userName']; // primary key olduğu için
+
                 $query = "SELECT * FROM member WHERE userName = '$uName' and password = '$pWord' ";
                 $result = mysqli_query($connection, $query);
                 
@@ -72,7 +77,6 @@
     <script type="text/javascript">
         var goToSubscHome = <?php Print($goToSubscHome);?>;                
         if(goToSubscHome){
-            window.alert("dasda2");
             window.location = 'SubsHome.php';
         }
     </script>
