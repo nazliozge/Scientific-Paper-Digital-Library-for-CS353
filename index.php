@@ -3,7 +3,6 @@
     <?php
         include "login.php";
         include "connection.php"
-
     ?>
 
     <head>
